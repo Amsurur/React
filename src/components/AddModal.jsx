@@ -1,4 +1,14 @@
-export const AddModal = ({ handleSubmit }) => {
+import React from "react";
+
+const AddModal = ({ AddData }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let obj = {
+      name: e.target["name"].value,
+      status: false,
+    };
+    AddData(obj);
+  };
   return (
     <div
       style={{
@@ -10,26 +20,28 @@ export const AddModal = ({ handleSubmit }) => {
         padding: "20px",
         boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
         zIndex: 1000,
-        borderRadius: "8px",
         width: "300px",
-        textAlign: "center",
+        borderRadius: "8px",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <h2>Add New Item</h2>
-
-      <form onSubmit={handleSubmit} action="">
+      <form onSubmit={handleSubmit}>
         <input
+          name="name"
           style={{
-            width: "100%",
+            marginBottom: "12px",
             padding: "8px",
-            margin: "12px 0",
             borderRadius: "4px",
             border: "1px solid #ccc",
           }}
           type="text"
         />
-        <button type="submit">Add</button>
+        <button type="submit">submit</button>
       </form>
     </div>
   );
 };
+
+export default AddModal;
