@@ -29,6 +29,16 @@ const App = () => {
       console.error(error);
     }
   }
+  async function EditData(obj) {
+    console.log(obj);
+
+    try {
+      await axios.put(`${Api}/${obj.id}`, obj);
+      GetData();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     GetData();
@@ -44,7 +54,7 @@ const App = () => {
         Toggle Theme
       </button>
       {openModal && <AddModal AddData={AddData} />}
-      <TodoTable data={data} />
+      <TodoTable EditData={EditData} data={data} />
     </div>
   );
 };
